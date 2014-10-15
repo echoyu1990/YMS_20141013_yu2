@@ -7,6 +7,8 @@
 //
 
 #import "LoginAndRegisterViewController.h"
+#import "DetailMealViewController.h"
+#import "YMSAppDelegate.h"
 #define appLogin 112
 @interface LoginAndRegisterViewController ()
 @property (strong, nonatomic) IBOutlet UITextField *userName;
@@ -43,6 +45,8 @@
 }
 - (void)ymsRequestFinishedOfDictionary:(NSDictionary*)jsonDic  Requestoftag:(NSInteger)tag
 {
+    YMSAppDelegate * myAppDelegate = (YMSAppDelegate *)[UIApplication sharedApplication].delegate;
+
     
     if (tag == appLogin) {
         
@@ -51,7 +55,8 @@
             
             NSArray * array2 = [[NSArray alloc]initWithArray:[jsonDic objectForKey:@"data"]];
             
-            [self dismissViewControllerAnimated:YES completion:nil];
+            //[self dismissViewControllerAnimated:YES completion:nil];
+          
             NSLog(@"登陆成功返回:%@",array2);
             //登陆成功后把登录名，手机号，会员编号，头像记录到NSUserDefaults
             
@@ -65,20 +70,41 @@
             [userDefault synchronize];
             
             // by helz
-            [self dismissViewControllerAnimated: YES completion:nil ] ;
+            //[self dismissViewControllerAnimated: YES completion:nil ] ;
+           
+            // 如果来自预定点餐
+            if ([myAppDelegate.mark2 isEqualToString:@"fromBookDetail"]) {
+//                [self.navigationController popViewControllerAnimated:YES];
+                
+                NSLog(@"helz: jump to mealdetail") ;
+                
+                
+                 [self performSegueWithIdentifier:@"register_to_detail" sender:self];
+                
+            }
+            // 来自“我的”- > 用户登录
+           else if([myAppDelegate.mark2 isEqualToString:@"fromMine"]){
+//                [self.navigationController popViewControllerAnimated:YES ];
             
-
-            
-        }else if ([[jsonDic objectForKey:@"result"] isEqualToString:@"1"]){
+               [self performSegueWithIdentifier:@"register_to_mine" sender:self];
+               
+           }
+           
+        }
+        
+        else if ([[jsonDic objectForKey:@"result"] isEqualToString:@"1"]){
             UIAlertView * alert = [[UIAlertView alloc]initWithTitle:[jsonDic objectForKey:@"message"] message:nil delegate:nil cancelButtonTitle:@"确定" otherButtonTitles: nil];
             [alert show];
-        }else if ([[jsonDic objectForKey:@"result"] isEqualToString:@"2"]){
+        }
+        else if ([[jsonDic objectForKey:@"result"] isEqualToString:@"2"]){
             UIAlertView * alert = [[UIAlertView alloc]initWithTitle:[jsonDic objectForKey:@"message"] message:nil delegate:nil cancelButtonTitle:@"确定" otherButtonTitles: nil];
             [alert show];
-        }else if ([[jsonDic objectForKey:@"result"] isEqualToString:@"3"]){
+        }
+        else if ([[jsonDic objectForKey:@"result"] isEqualToString:@"3"]){
             UIAlertView * alert = [[UIAlertView alloc]initWithTitle:[jsonDic objectForKey:@"message"] message:nil delegate:nil cancelButtonTitle:@"确定" otherButtonTitles: nil];
             [alert show];
-        }else if ([[jsonDic objectForKey:@"result"] isEqualToString:@"4"]){
+        }
+        else if ([[jsonDic objectForKey:@"result"] isEqualToString:@"4"]){
             UIAlertView * alert = [[UIAlertView alloc]initWithTitle:[jsonDic objectForKey:@"message"] message:nil delegate:nil cancelButtonTitle:@"确定" otherButtonTitles: nil];
             [alert show];
         }
@@ -119,10 +145,24 @@
 
 
 - (IBAction)loginButton:(id)sender {
+    
     YMSWebHttpRequest * loginRequest = [YMSWebHttpRequest shareInterfaceYMSRequest];
     NSArray * array1 = @[@"method",@"appName",@"appPwd",@"loginName",@"password"];
     NSDictionary * dic1 = [NSDictionary dictionaryWithObjectsAndKeys:@"appLogin",@"method",@"order",@"appName",@"order",@"appPwd",self.userName.text,@"loginName",self.userPassword.text,@"password", nil];
     [loginRequest requestWithURL:@"http://www.youmeishi.cn/UnisPlatform/services/personMemberWebService" Tag:appLogin rankKeyArray:array1 postData:dic1 delegate:self];
 
 }
+- (IBAction)testbutton:(id)sender {
+    
+     YMSAppDelegate * myAppDelegate = (YMSAppDelegate *)[UIApplication sharedApplication].delegate;
+    
+    
+    if ([myAppDelegate.mark2 isEqualToString:@"fromBookDetail"]) {
+        //                [self.navigationController popViewControllerAnimated:YES];
+    
+        [self performSegueWithIdentifier:@"RegisterToDetailMeal" sender:self];
+    
+    }
+}
+
 @end

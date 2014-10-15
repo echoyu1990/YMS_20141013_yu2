@@ -314,6 +314,7 @@
 
 
 -(void)createDetailMeal{
+    YMSAppDelegate * myAppDelegate = (YMSAppDelegate *)[UIApplication sharedApplication].delegate;
     //预定点餐
     YMSWebHttpRequest *request = [YMSWebHttpRequest shareInterfaceYMSRequest];
     
@@ -321,17 +322,15 @@
     
     NSArray *array2 = @[@"method",@"appName",@"appPwd",@"storeCode",@"flag"];
     
-    NSDictionary *dic2 = [NSDictionary dictionaryWithObjectsAndKeys:@"queryDishByStoreCode",@"method",@"order",@"appName",@"order",@"appPwd",[_detailItem objectForKey:@"storeCode"],@"storeCode",@"1",@"flag", nil];
+    NSDictionary *dic2 = [NSDictionary dictionaryWithObjectsAndKeys:@"queryDishByStoreCode",@"method",@"order",@"appName",@"order",@"appPwd",myAppDelegate.strStoreCode,@"storeCode",@"1",@"flag", nil];
     
     [request requestWithURL:@"http://www.youmeishi.cn/UnisPlatform/services/baseInfoService" Tag:queryDishByStoreCode rankKeyArray:array2 postData:dic2 delegate:self];
     
     //外卖送餐
     YMSWebHttpRequest *request22 = [YMSWebHttpRequest shareInterfaceYMSRequest];
     
-    //NSLog(@"The profile is %@",[_detailItem objectForKey:@"profile"]);
-    
     NSArray *array22 = @[@"method",@"appName",@"appPwd",@"storeCode",@"flag"];
-    YMSAppDelegate * myAppDelegate = (YMSAppDelegate *)[[UIApplication sharedApplication] delegate];
+   
     NSString * strStoreCode = myAppDelegate.strStoreCode;
     NSDictionary *dic22 = [NSDictionary dictionaryWithObjectsAndKeys:@"queryDishByStoreCode",@"method",@"order",@"appName",@"order",@"appPwd",strStoreCode,@"storeCode",@"0",@"flag", nil];
     
@@ -511,6 +510,7 @@
         _detailItem = newdetailItem;
         //NSLog(@"the information is %@",_detailItem);
     }
+    
 }
 
 
@@ -711,9 +711,20 @@
 
 - (IBAction)buyButtonClick:(id)sender {
     if ([self.strFlag isEqualToString:@"0"]) {
+        //外卖订餐
         [self performSegueWithIdentifier:@"TAKEOUT_ORDER" sender:self];
     }else{
-        [self performSegueWithIdentifier:@"ORDER_FIRM" sender:self];
+        //预定订餐,登陆可以跳转，未登录先登录
+        if ([[NSUserDefaults standardUserDefaults] objectForKey:@"userName" ] != nil) {
+            [self performSegueWithIdentifier:@"ORDER_FIRM" sender:self];
+        }else{
+            //先登录
+            
+            [self performSegueWithIdentifier:@"DETAIL_TO_LOGIN" sender:self];
+            YMSAppDelegate * myAppDelegate = (YMSAppDelegate *)[UIApplication sharedApplication].delegate;
+            myAppDelegate.mark2 = @"fromBookDetail";
+        }
+        
     }
     
 }
@@ -728,4 +739,11 @@
     [request requestWithURL:@"http://www.youmeishi.cn/UnisPlatform/services/collectionAppService" Tag:addCollectionStoreByLoginNo rankKeyArray:array postData:dic delegate:self];
 
 }
+
+
+- (IBAction)unwindFromRegisterToDetailMealViewController:(UIStoryboardSegue *)segue {
+    
+    
+}
+
 @end

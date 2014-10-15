@@ -13,6 +13,7 @@
 @interface LoginAndRegisterViewController : UIViewController<YMSWebHttprRequestReceiveDelegate>
 
 @property (assign,nonatomic) MainTableViewController<ViewDelegate> * delegate;
+- (IBAction)testbutton:(id)sender;
 
 
 @end

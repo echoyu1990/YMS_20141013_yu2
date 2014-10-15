@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <MAMapKit/MAMapKit.h>
 
 @interface myAddressCell : UITableViewCell
 @property (strong, nonatomic) IBOutlet UILabel *nameLabel;
@@ -14,4 +15,5 @@
 
 @property (strong, nonatomic) NSString *name;
 @property (strong, nonatomic) NSString *address;
+@property CLLocationCoordinate2D location;
 @end

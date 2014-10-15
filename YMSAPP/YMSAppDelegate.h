@@ -22,7 +22,8 @@
 @property (strong, nonatomic) UIWindow *window;
 //by yulongzhen
 
-@property (strong,nonatomic) NSString * mark;
+@property (strong,nonatomic) NSString * mark;//区分餐厅简介的来源是轮播还是cell或者预定点餐
+@property (strong,nonatomic) NSString * mark2;//区分登陆来自预定点餐还是“我的”登陆
 // for map
 @property (assign,nonatomic) float longitude;
 @property (assign,nonatomic) float latitude;

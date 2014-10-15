@@ -70,6 +70,16 @@
 {
     // Override point for customization after application launch.
     
+    
+    //iOS8 定位修复
+    CLLocationManager *locationManager;
+    [UIApplication sharedApplication].idleTimerDisabled = TRUE;
+    locationManager = [[CLLocationManager alloc] init];
+    [locationManager requestAlwaysAuthorization];        //NSLocationAlwaysUsageDescription
+    [locationManager requestWhenInUseAuthorization];     //NSLocationWhenInUseDescription
+    locationManager.delegate = self;
+    
+    
     //注册地图sdk
     [self  configureAPIKey];
     

@@ -225,12 +225,7 @@
     return [self.restaurant count];
 }
 
-/*
--(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
-    NSString *expression = @"";
-    return expression;
-}
-*/
+
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
@@ -269,6 +264,9 @@
     
     YMSAppDelegate * myAppDelegate = (YMSAppDelegate *)[UIApplication sharedApplication].delegate;
     myAppDelegate.strStoreCode = [self.restaurant[indexPath.row] objectForKey:@"storeCode"];
+   
+    myAppDelegate.mark = @"book";//
+
     
 }
 
@@ -514,7 +512,9 @@
             
             if (self.isShowTasteView == YES) {
                 
+                
                 self.ylzAllTasteView.hidden = NO;
+                
                 
                 [self.tasteButton1 setTitle:self.myTasteArray[0] forState:UIControlStateNormal];
                 self.tasteButton1.tintColor = [UIColor whiteColor];

@@ -80,9 +80,7 @@
     return 7;
 }
 
--(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
-    return @"";
-}
+
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
         if ([tableView isEqual:_introductionTableView]) {
@@ -114,7 +112,7 @@
             
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
             
-            if ([self.mark isEqualToString:@"fromPrincipal"]) {
+            
                 if ([myAppDelegate.mark isEqualToString:@"lunbo"]) {
                     cell.restaurantName.text = [myAppDelegate.maFirstZoneADataDetail[myAppDelegate.number] objectForKey:@"name"];
                     cell.restaurantPhoto.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:[myAppDelegate.maFirstZoneADataDetail[myAppDelegate.number] objectForKey:@"picture"]]]];
@@ -131,7 +129,7 @@
                 return cell;
                 }
                 
-            }else{
+            else{
             cell.restaurantName.text = [_introductiondetailItem objectForKey:@"name"];
             cell.restaurantPhoto.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:[_introductiondetailItem objectForKey:@"picture"]]]];
             NSString *distance = [_introductiondetailItem objectForKey:@"distance"];
@@ -153,7 +151,7 @@
             
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
             
-            if ([self.mark isEqualToString:@"fromPrincipal"]) {
+            
                 if ([myAppDelegate.mark isEqualToString:@"lunbo"]) {
                     NSLog(@"zhixing");
                     cell.RestaurantProfile.text = [myAppDelegate.maFirstZoneADataDetail[myAppDelegate.number] objectForKey:@"introduction"];
@@ -162,7 +160,7 @@
                 cell.RestaurantProfile.text = [myAppDelegate.maSecondZoneADDataDetail[myAppDelegate.number] objectForKey:@"introduction"];
                 return cell;
                 }
-            }else{
+            else{
             cell.RestaurantProfile.text = [_introductiondetailItem objectForKey:@"profile"];
             
             return cell;
@@ -174,7 +172,7 @@
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
             
             
-            if ([self.mark isEqualToString:@"fromPrincipal"]) {
+            
                 if ([myAppDelegate.mark isEqualToString:@"lunbo"]) {
                     cell.BusinessHours.text = [myAppDelegate.maFirstZoneADataDetail[myAppDelegate.number] objectForKey:@"worktime"];
                     return cell;
@@ -183,7 +181,7 @@
                 return cell;
                 }
             
-            }else{
+            else{
             cell.BusinessHours.text = [_introductiondetailItem objectForKey:@"businessTime"];
             
             return cell;
@@ -194,7 +192,7 @@
             
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
             
-            if ([self.mark isEqualToString:@"fromPrincipal"]) {
+            
                 if ([myAppDelegate.mark isEqualToString:@"lunbo"]) {
                     cell.RestaurantAddress.text = [myAppDelegate.maFirstZoneADataDetail[myAppDelegate.number] objectForKey:@"address"];
                     return cell;
@@ -202,7 +200,7 @@
                 cell.RestaurantAddress.text = [myAppDelegate.maSecondZoneADDataDetail[myAppDelegate.number] objectForKey:@"address"];
                 return cell;
                 }
-            }else{
+            else{
             cell.RestaurantAddress.text = [_introductiondetailItem objectForKey:@"address"];
             
             return cell;
@@ -213,7 +211,7 @@
             
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
             
-            if ([self.mark isEqualToString:@"fromPrincipal"]) {
+            
                 if ([myAppDelegate.mark isEqualToString:@"lunbo"]) {
                     cell.PhoneNumber.text = [myAppDelegate.maFirstZoneADataDetail[myAppDelegate.number] objectForKey:@"phone"];
                     return cell;
@@ -221,7 +219,7 @@
                 cell.PhoneNumber.text = [myAppDelegate.maSecondZoneADDataDetail[myAppDelegate.number] objectForKey:@"phone"];
                 return cell;
                 }
-            }else{
+            else{
                 
             cell.PhoneNumber.text = [_introductiondetailItem objectForKey:@"phoneNumber"];
             
@@ -233,7 +231,7 @@
             
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
             
-            if ([self.mark isEqualToString:@"fromPrincipal"]) {
+            
                 NSString *number = [NSString stringWithFormat:@"%@",self.comentsNo];
                 cell.NumberOfComments.text = number;
                 
@@ -279,7 +277,7 @@
                     cell.body.text = body;
                     
                     return cell;
-                }else
+                }else if([number isEqualToString:@""] ||[number isEqualToString:@"0"] )
                 {
 //                    NSString *name = [NSString stringWithFormat:@"%@",[self.Comentlist objectAtIndex:0]];
 //                    cell.name.text = name;
@@ -289,9 +287,7 @@
 //                    cell.time.text = time;
                     return cell;
                 }
-
-                
-            }
+            
             else
             {
                 NSString *name = [NSString stringWithFormat:@"%@",[self.Comentlist objectAtIndex:0]];
@@ -347,23 +343,25 @@
 {
     YMSWebHttpRequest *request = [YMSWebHttpRequest shareInterfaceYMSRequest];
     NSString *companyNo = [[NSString alloc]init];
-    if ([self.mark isEqualToString:@"fromPrincipal"])
-    {
+    
         
         YMSAppDelegate * myAppDelegate = (YMSAppDelegate *)[UIApplication sharedApplication].delegate;
         if ([myAppDelegate.mark isEqualToString:@"lunbo"]) {
             companyNo = [myAppDelegate.maFirstZoneADataDetail[myAppDelegate.number]objectForKey:@"number"];
             NSLog(@"GYJ----------这是轮播广告门店----companyNo:%@",companyNo);
             
-        }else{
+        }else if([myAppDelegate.mark isEqualToString:@"bottomCell"]){
             companyNo = [myAppDelegate.maSecondZoneADDataDetail[myAppDelegate.number]objectForKey:@"number"];
             NSLog(@"GYJ----------这是cell广告门店----companyNo:%@",companyNo);
+        }else if([myAppDelegate.mark isEqualToString:@"book"]){
+            
+        
+            companyNo = [_introductiondetailItem objectForKey:@"storeCode"];
+        
+            NSLog(@"GYJ----------这是预定点餐门店----companyNo:%@",companyNo);
+    
         }
-    }else
-    {
-        companyNo = [_introductiondetailItem objectForKey:@"storeCode"];
-        NSLog(@"GYJ----------这是预定点餐门店----companyNo:%@",companyNo);
-    }
+    
     NSArray *array = @[@"method",@"appName",@"appPwd",@"storeCode"];
     
     NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:@"queryLatestAppraiseByStoreCode",@"method",@"order",@"appName",@"order",@"appPwd",companyNo,@"storeCode", nil];

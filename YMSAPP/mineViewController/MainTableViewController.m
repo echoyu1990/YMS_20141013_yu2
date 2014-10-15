@@ -9,11 +9,13 @@
 #import "MainTableViewController.h"
 #import "NavigationPageViewController.h"
 #import "LoginAndRegisterViewController.h"
+#import "YMSAppDelegate.h"
 @interface MainTableViewController ()
 {
     NSMutableArray *dataGroup;
     NSMutableArray *dataString;
 }
+
 
 @end
 
@@ -44,6 +46,8 @@
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     
+    [self createData];
+    [self.tableView reloadData];
     //self.hidesBottomBarWhenPushed = YES;
 }
 
@@ -88,26 +92,43 @@
     cell.textLabel.text = dataGroup[indexPath.section][indexPath.row][@"name"];
     cell.imageView.image = [UIImage imageNamed:dataGroup[indexPath.section][indexPath.row][@"picture"]];
     if ([[NSUserDefaults standardUserDefaults] objectForKey:@"userName"] != nil && indexPath.section == 0) {
-        UIButton * cancelButton = [[UIButton alloc]initWithFrame:CGRectMake(10, 250, 60, 30)];
-        [cancelButton setTitle:@"注销" forState:UIControlStateNormal];
-        [cancelButton addTarget:self action:@selector(cancel) forControlEvents:UIControlEventTouchUpInside];
-        [cell.contentView addSubview:cancelButton];
+        
+        self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"注销" style:UIBarButtonItemStylePlain target:self action:@selector(cancelButtonClick:)];
+        self.navigationItem.rightBarButtonItem.tintColor = [UIColor redColor];
+        
     }
 
     // Configure the cell...
     
     return cell;
 }
--(void)cancel
+-(void)cancelButtonClick:(UIBarButtonItem *)button
 {
-    self.strUserName = nil;
+    NSUserDefaults * stand = [NSUserDefaults standardUserDefaults];
+    [stand removeObjectForKey:@"userName"];
+    [stand removeObjectForKey:@"realName"];
+    [stand removeObjectForKey:@"userMemberNo"];
+    [stand removeObjectForKey:@"userImage"];
+    [stand removeObjectForKey:@"userPassword"];
+    [stand removeObjectForKey:@"userPhoneNumber"];
+    
+    
+    NSLog(@"NSUserDefaults:%@",[[NSUserDefaults standardUserDefaults] objectForKey:@"userName"]);
+    [self.tableView reloadData];
+    [self createData];
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    YMSAppDelegate * myAppDelegate = (YMSAppDelegate *)[UIApplication sharedApplication].delegate;
+    
     if (indexPath.section == 0) {
         switch (indexPath.row) {
             case 0:
-                [self performSegueWithIdentifier:@"MAIN_TO_LOGIN_AND_REGISTER" sender:self];
+                if ([[NSUserDefaults standardUserDefaults] objectForKey:@"userName"] == nil) {
+                    [self performSegueWithIdentifier:@"MAIN_TO_LOGIN_AND_REGISTER" sender:self];
+                    myAppDelegate.mark2 = @"fromMine";
+                }
+                
                 break;
                 
             default:
@@ -148,10 +169,6 @@
                 {
                     //点击进入导航页面
                     
-                    
-//                    UIStoryboard * navigationStotyBoard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-//                    NavigationPageViewController * navigationPageView  = [navigationStotyBoard instantiateViewControllerWithIdentifier:@"NavigationPageView"];
-//                    [self presentViewController:navigationPageView animated:NO completion:nil];
                 }
                     break;
                     
@@ -197,7 +214,7 @@
                            @"picture":@"brand_default_head.png"}];
     }else{
         [login addObject:@{@"name": [[NSUserDefaults standardUserDefaults] objectForKey:@"userName"],
-                           @"picture":@"brand_default_head.png"}];
+                           @"picture":@"wdj.png"}];
     }
     [mydata addObject:@{@"name": @"我的外卖",
                         @"picture":@"wdwm.png"}];
@@ -275,5 +292,10 @@
 {
     self.strUserName = value;
 }
+
+- (IBAction)unwindFromRegisterToMineController:(UIStoryboardSegue *)segue {
+    
+}
+
 
 @end

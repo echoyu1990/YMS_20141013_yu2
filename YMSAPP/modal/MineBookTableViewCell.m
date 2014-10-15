@@ -1,14 +1,14 @@
 //
-//  FirmAddressTableViewCell.m
+//  MineBookTableViewCell.m
 //  YMSAPP
 //
-//  Created by vanceinfo on 14-10-9.
+//  Created by vanceinfo on 14-10-13.
 //  Copyright (c) 2014年 gaoxuzhao. All rights reserved.
 //
 
-#import "FirmAddressTableViewCell.h"
+#import "MineBookTableViewCell.h"
 
-@implementation FirmAddressTableViewCell
+@implementation MineBookTableViewCell
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {

@@ -490,7 +490,6 @@
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
     if([[segue identifier] isEqualToString:@"DETAIL_TO_INFO"]){
-//        [[segue destinationViewController] setIntroductiondetailItem:self.detailItem];
         
        
         
@@ -526,6 +525,8 @@
 - (IBAction)backPrincipalButtonClick:(id)sender {
     [self dismissViewControllerAnimated:YES completion:nil];
 }
+
+
 
 
 

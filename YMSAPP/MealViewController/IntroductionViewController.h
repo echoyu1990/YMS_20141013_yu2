@@ -27,6 +27,6 @@
 @property (strong,nonatomic) NSArray *Comentlist;
 
 @property (strong,nonatomic) NSString * mark;
-@property (strong,nonatomic) NSString * mark2;
+
 @property (assign,nonatomic) int indexpath;
 @end

@@ -21,7 +21,6 @@
 #import "YMSPrincipalDetailViewController.h"
 #import "IntroductionViewController.h"
 
-
 #define MainViewControllerTitle @"高德地图API-2D"
 
 #define TAGE_HOMEPAGE_ADVERTISEMENT  235
@@ -57,6 +56,7 @@
 
 
 #pragma mark----实现 首页定位
+
 -(void)getLat
 {
     __block __weak YMSPrincipalViewController *wself = self;
@@ -96,6 +96,7 @@
     button.titleLabel.frame = frame;
     [UIView commitAnimations];
 }
+
 -(void)saveLocation:(CLLocationCoordinate2D)locationCorrrdinate
 {
     NSUserDefaults * myUserDefaults  = [NSUserDefaults standardUserDefaults];
@@ -355,20 +356,22 @@
 #pragma mark----实现 传数据
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     
-    YMSAppDelegate * myAppDelegate = (YMSAppDelegate *)[UIApplication sharedApplication].delegate;
     
-/*
+    YMSAppDelegate * myAppDelegate = (YMSAppDelegate *)[UIApplication sharedApplication].delegate;
+
+    
+    /*
     //将page2设定成Storyboard Segue的目标UIViewController
     if([segue.identifier isEqualToString:@"mapViewSegue"])
     {
-        //        UINavigationController *nav = (UINavigationController *)segue.destinationViewController;
-        //
-        //        YMSIndexLocationViewController *mapViewController =(YMSIndexLocationViewController *)[nav viewControllers][0];
+        UINavigationController *nav = (UINavigationController *)segue.destinationViewController;
         
-        //        mapViewController.delegate = self;
+        YMSMapViewController *mapViewController =(YMSMapViewController *)[nav viewControllers][0];
+        
+        mapViewController.delegate = self;
     }
- 
-*/
+     */
+    
 //    if ([segue.identifier isEqualToString:@"HOME_TO_DIANCAN"]){
 //        if ([self.mark1 isEqualToString:@"lunbo"]) {
 //            YMSAppDelegate * myAppDelegate = (YMSAppDelegate *)[UIApplication sharedApplication].delegate;
@@ -486,6 +489,9 @@
 #pragma mark----点击 tableview
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
+    YMSAppDelegate * myAppDelegate = (YMSAppDelegate *)[UIApplication sharedApplication].delegate;
+    myAppDelegate.mark = @"bottomCell";
+    
     if (indexPath.row > 0) {
         YMSAppDelegate * myAppDelegate = (YMSAppDelegate *)[UIApplication sharedApplication].delegate;
         
@@ -517,34 +523,6 @@
         
     }
 
-//    if ([self.advertisementManager dataState] == 0) {
-//        
-//    }
-    /*
-    if([tableView isEqual: self.myHomeTableView])
-    {
-        if (indexPath.section == 0) {
-            if (indexPath.row == 0) {
-                
-            }
-            else{
-                NSLog(@"the advertisementData2 is %@",self.advertisementManager.adData2);
-                NSArray *array2 = [self.advertisementManager.adData2 objectAtIndex:indexPath.row];
-                _array3 = [array2 objectAtIndex:4];
-                NSLog(@"the data2 is %@",_array3);
-                self.alertviewTitle.text = [_array3 objectAtIndex:1];
-                self.alertviewImage.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:[_array3 objectAtIndex:2]]]];
-                _storeInformation = [[NSMutableDictionary alloc]initWithDictionary:@{@"name":[_array3 objectAtIndex:1],@"storeCode": [_array3 objectAtIndex:0],@"address":[_array3 objectAtIndex:3],@"picture":[_array3 objectAtIndex:2],@"distance":@"",@"comments":[_array3 objectAtIndex:11],@"profile":[_array3 objectAtIndex:6],@"businessTime":[_array3 objectAtIndex:5],@"phoneNumber":[_array3 objectAtIndex:4]}];
-                [self.greyBackground setHidden:NO];
-                [self.alertView setHidden:NO];
-            }
-            
-    }
-    }
-     */
-    
-   // YMSAppDelegate * myAppDelegate = (YMSAppDelegate *)[[UIApplication sharedApplication] delegate ];
-    
     
     
 }

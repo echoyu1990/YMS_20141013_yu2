@@ -2,7 +2,7 @@
 //  YMSIndexLocationViewController.m
 //  YMSAPP
 //
-//  Created by 介扬 on 14-10-13.
+//  Created by 介扬 on 14-10-15.
 //  Copyright (c) 2014年 gaoxuzhao. All rights reserved.
 //
 
@@ -15,11 +15,11 @@
 @interface YMSIndexLocationViewController ()<AMapSearchDelegate>
 @property (nonatomic, strong) AMapSearchAPI *search;
 @property (nonatomic, strong) NSArray *pois;
+
 @property (strong, nonatomic) IBOutlet UISearchBar *UISearchBarOutLet;
 @property (strong, nonatomic) IBOutlet UITableView *tableViewOutLet;
 @property (strong, nonatomic) NSArray *list;
 @property CLLocationCoordinate2D myLocation;
-
 @end
 
 @implementation YMSIndexLocationViewController
@@ -30,8 +30,10 @@
     [super viewWillAppear: animated];
     [MAMapServices sharedServices].apiKey =@"34f249b2282c0a8f336f806cd0862c7d";
     self.mapView=[[MAMapView alloc] initWithFrame:CGRectMake(0, 108, 320, 207)];
+    
     //定位开启
     self.mapView.showsUserLocation = YES;
+    self.mapView.showsCompass= NO;
     //    self.mapView.rotateEnabled = NO;
     //    self.mapView.rotateCameraEnabled = NO;
     [self.view addSubview:self.mapView];
@@ -43,10 +45,31 @@
     self.tableViewOutLet.delegate = self;
 }
 
+-(void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    
+    UIImageView *locationTag = [[UIImageView alloc] initWithFrame:CGRectMake(135, 161, 50, 50)];
+    [locationTag setImage:[UIImage imageNamed:@"LocationTag"]];
+    [self.view addSubview:locationTag];
+    
+    UIButton *doLocationBtn = [[UIButton alloc] initWithFrame:CGRectMake(10, 260, 37, 37)];
+    [doLocationBtn setImage:[UIImage imageNamed:@"DoLocationBtn"] forState:UIControlStateNormal];
+    //    [doLocationBtn setImage:[UIImage imageNamed:@"DoLocationBtn"]];
+    doLocationBtn.alpha = 0.7;
+    [doLocationBtn addTarget:self action:@selector(doLocationBtn) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:doLocationBtn];
+    
+}
+
 //左上角的return按钮的触摸方法
 - (IBAction)returnBtn:(id)sender {
-    [self.navigationController popViewControllerAnimated:YES];
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
+//右上角按钮的方法
+- (IBAction)doneBtn:(UIBarButtonItem *)sender {
+}
+
 
 #pragma mark -AMapSearchDelegate
 /*!
@@ -74,11 +97,28 @@
     NSLog(@"查询失败的回调函数");
 }
 
+-(void)doLocationBtn{
+    NSLog(@"!!!!按钮点击！！！");
+    [self modeAction];
+}
+
 - (void)modeAction
 {
     //地图跟着位置移动
     [self.mapView setUserTrackingMode: MAUserTrackingModeFollow animated:YES];
 }
+
+
+/*!
+ @brief 定位失败后，会调用此函数
+ @param mapView 地图View
+ @param error 错误号，参考CLError.h中定义的错误号
+ */
+-(void)mapView:(MAMapView*)mapView didFailToLocateUserWithError:(NSError*)error
+{
+    NSLog(@"获得当前定位失败");
+}
+
 
 /*!
  @brief 地图区域改变完成后会调用此接口
@@ -116,7 +156,6 @@
 //数组更新————>cell
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     static NSString *CustomCellIdentifier = @"CustomCellIdentifier"; //相当于一个行标识
-    //myAddressCell *cell = [tableView dequeueReusableCellWithIdentifier:CustomCellIdentifier];
     //tableViewCell重绘
     static BOOL nibsRegistered = NO;
     if (!nibsRegistered) {
@@ -126,10 +165,15 @@
     }
     myAddressCell *cell = [self.tableViewOutLet dequeueReusableCellWithIdentifier:CustomCellIdentifier];
     NSUInteger row = indexPath.row; //获取行号
-    if(row >= _pois.count){
-        cell.textLabel.text = nil;//数据显示
-        return cell;
+    //    if(row >= _pois.count){
+    //        cell.textLabel.text = nil;//数据显示
+    //        return cell;
+    //    }
+    
+    if(tableView == self.tableViewOutLet && indexPath == 0){
+        NSLog(@"diyihang!");
     }
+    
     AMapPOI  *poi = [self.pois objectAtIndex:row];//获取数据
     NSString *address;
     if([poi.province isEqualToString:poi.city]){
@@ -139,6 +183,12 @@
     }
     [cell setAddress:address];
     [cell setName:poi.name];//数据显示
+    
+    CLLocationCoordinate2D locData;
+    locData.latitude = poi.location.latitude;
+    locData.longitude = poi.location.longitude;
+    cell.location = locData;
+    
     NSLog(@"%@%@%@%@",poi.province,poi.city,poi.district,poi.address);
     return cell;
 }
@@ -156,9 +206,11 @@
 //选中Cell响应事件
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];//选中后的反显颜色即刻消失
-    myAddressCell *cell = [self.tableViewOutLet cellForRowAtIndexPath:indexPath];
+    myAddressCell *cell = (myAddressCell *)[self.tableViewOutLet cellForRowAtIndexPath:indexPath];
     NSLog(@"%@",cell.nameLabel.text);
     NSLog(@"%@",cell.addressLabel.text);
+    
+    [self.mapView setCenterCoordinate:cell.location animated:YES];
 }
 
 

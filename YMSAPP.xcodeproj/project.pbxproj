@@ -273,6 +273,7 @@
 		156E31CC19E65BE4003965E2 /* FirmAddressTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 156E31CB19E65BE4003965E2 /* FirmAddressTableViewCell.m */; };
 		156E31CF19E65CF0003965E2 /* TakeOutFirmViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 156E31CE19E65CF0003965E2 /* TakeOutFirmViewController.m */; };
 		1573C78319EB66E0003534F7 /* CollectTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1573C78219EB66E0003534F7 /* CollectTableViewCell.m */; };
+		1573C78619EBB326003534F7 /* MineBookTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1573C78519EBB326003534F7 /* MineBookTableViewCell.m */; };
 		158205B319DA56A300C97326 /* YMSMessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 158205B219DA56A300C97326 /* YMSMessageViewController.m */; };
 		158205B619DA7E8700C97326 /* ASViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 158205B519DA7E8700C97326 /* ASViewController.m */; };
 		158E692319E78CA200E69E1B /* CommentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 158E692219E78CA200E69E1B /* CommentViewController.m */; };
@@ -283,9 +284,9 @@
 		15DA3F0619E51BB4008D5796 /* 58_58.png in Resources */ = {isa = PBXBuildFile; fileRef = 15DA3F0319E51BB4008D5796 /* 58_58.png */; };
 		15DA3F0719E51BB4008D5796 /* 80_80.png in Resources */ = {isa = PBXBuildFile; fileRef = 15DA3F0419E51BB4008D5796 /* 80_80.png */; };
 		15DA3F0819E51BB4008D5796 /* 120_120.png in Resources */ = {isa = PBXBuildFile; fileRef = 15DA3F0519E51BB4008D5796 /* 120_120.png */; };
-		8F9B33CC19EBAA27000ABE16 /* myAddressCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F9B33C819EBAA27000ABE16 /* myAddressCell.m */; };
-		8F9B33CD19EBAA27000ABE16 /* myAddressCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8F9B33C919EBAA27000ABE16 /* myAddressCell.xib */; };
-		8F9B33CE19EBAA27000ABE16 /* YMSIndexLocationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F9B33CB19EBAA27000ABE16 /* YMSIndexLocationViewController.m */; };
+		8F69CF7819EE0756001FCC59 /* myAddressCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F69CF7419EE0756001FCC59 /* myAddressCell.m */; };
+		8F69CF7919EE0756001FCC59 /* myAddressCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8F69CF7519EE0756001FCC59 /* myAddressCell.xib */; };
+		8F69CF7D19EE0AAA001FCC59 /* YMSIndexLocationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F69CF7C19EE0AAA001FCC59 /* YMSIndexLocationViewController.m */; };
 		A00742A519C25F8500F74680 /* sample_banner.png in Resources */ = {isa = PBXBuildFile; fileRef = A00742A119C25F8500F74680 /* sample_banner.png */; };
 		A00742A619C25F8500F74680 /* sample_call.png in Resources */ = {isa = PBXBuildFile; fileRef = A00742A219C25F8500F74680 /* sample_call.png */; };
 		A00742A719C25F8500F74680 /* sample_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = A00742A319C25F8500F74680 /* sample_icon.png */; };
@@ -702,6 +703,8 @@
 		156E31CE19E65CF0003965E2 /* TakeOutFirmViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TakeOutFirmViewController.m; path = ../TakeOutFirmViewController.m; sourceTree = "<group>"; };
 		1573C78119EB66E0003534F7 /* CollectTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CollectTableViewCell.h; sourceTree = "<group>"; };
 		1573C78219EB66E0003534F7 /* CollectTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CollectTableViewCell.m; sourceTree = "<group>"; };
+		1573C78419EBB326003534F7 /* MineBookTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MineBookTableViewCell.h; sourceTree = "<group>"; };
+		1573C78519EBB326003534F7 /* MineBookTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MineBookTableViewCell.m; sourceTree = "<group>"; };
 		158205B119DA56A300C97326 /* YMSMessageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YMSMessageViewController.h; sourceTree = "<group>"; };
 		158205B219DA56A300C97326 /* YMSMessageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YMSMessageViewController.m; sourceTree = "<group>"; };
 		158205B419DA7E8700C97326 /* ASViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASViewController.h; sourceTree = "<group>"; };
@@ -719,11 +722,11 @@
 		15DA3F0319E51BB4008D5796 /* 58_58.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 58_58.png; sourceTree = "<group>"; };
 		15DA3F0419E51BB4008D5796 /* 80_80.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 80_80.png; sourceTree = "<group>"; };
 		15DA3F0519E51BB4008D5796 /* 120_120.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 120_120.png; sourceTree = "<group>"; };
-		8F9B33C719EBAA27000ABE16 /* myAddressCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = myAddressCell.h; path = MapNew/myAddressCell.h; sourceTree = "<group>"; };
-		8F9B33C819EBAA27000ABE16 /* myAddressCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = myAddressCell.m; path = MapNew/myAddressCell.m; sourceTree = "<group>"; };
-		8F9B33C919EBAA27000ABE16 /* myAddressCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = myAddressCell.xib; path = MapNew/myAddressCell.xib; sourceTree = "<group>"; };
-		8F9B33CA19EBAA27000ABE16 /* YMSIndexLocationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = YMSIndexLocationViewController.h; path = MapNew/YMSIndexLocationViewController.h; sourceTree = "<group>"; };
-		8F9B33CB19EBAA27000ABE16 /* YMSIndexLocationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = YMSIndexLocationViewController.m; path = MapNew/YMSIndexLocationViewController.m; sourceTree = "<group>"; };
+		8F69CF7319EE0756001FCC59 /* myAddressCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = myAddressCell.h; path = mapNew/myAddressCell.h; sourceTree = "<group>"; };
+		8F69CF7419EE0756001FCC59 /* myAddressCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = myAddressCell.m; path = mapNew/myAddressCell.m; sourceTree = "<group>"; };
+		8F69CF7519EE0756001FCC59 /* myAddressCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = myAddressCell.xib; path = mapNew/myAddressCell.xib; sourceTree = "<group>"; };
+		8F69CF7B19EE0AAA001FCC59 /* YMSIndexLocationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = YMSIndexLocationViewController.h; path = mapNew/YMSIndexLocationViewController.h; sourceTree = "<group>"; };
+		8F69CF7C19EE0AAA001FCC59 /* YMSIndexLocationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = YMSIndexLocationViewController.m; path = mapNew/YMSIndexLocationViewController.m; sourceTree = "<group>"; };
 		A00742A119C25F8500F74680 /* sample_banner.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sample_banner.png; sourceTree = "<group>"; };
 		A00742A219C25F8500F74680 /* sample_call.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sample_call.png; sourceTree = "<group>"; };
 		A00742A319C25F8500F74680 /* sample_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sample_icon.png; sourceTree = "<group>"; };
@@ -1334,7 +1337,7 @@
 		09AF4D7F199DAF060092EA17 /* YMSAPP */ = {
 			isa = PBXGroup;
 			children = (
-				8F9B33C619EBA9D6000ABE16 /* MapNew */,
+				8F69CF7219EE072B001FCC59 /* mapNew */,
 				096E103319E626C200176546 /* share */,
 				A08115D219D7A6E800700C3F /* alipay */,
 				A3D1686D19B5A4BB0060EA2F /* mineViewController */,
@@ -1516,20 +1519,22 @@
 			children = (
 				1573C78119EB66E0003534F7 /* CollectTableViewCell.h */,
 				1573C78219EB66E0003534F7 /* CollectTableViewCell.m */,
+				1573C78419EBB326003534F7 /* MineBookTableViewCell.h */,
+				1573C78519EBB326003534F7 /* MineBookTableViewCell.m */,
 			);
 			name = MineModal;
 			sourceTree = "<group>";
 		};
-		8F9B33C619EBA9D6000ABE16 /* MapNew */ = {
+		8F69CF7219EE072B001FCC59 /* mapNew */ = {
 			isa = PBXGroup;
 			children = (
-				8F9B33C719EBAA27000ABE16 /* myAddressCell.h */,
-				8F9B33C819EBAA27000ABE16 /* myAddressCell.m */,
-				8F9B33C919EBAA27000ABE16 /* myAddressCell.xib */,
-				8F9B33CA19EBAA27000ABE16 /* YMSIndexLocationViewController.h */,
-				8F9B33CB19EBAA27000ABE16 /* YMSIndexLocationViewController.m */,
+				8F69CF7319EE0756001FCC59 /* myAddressCell.h */,
+				8F69CF7419EE0756001FCC59 /* myAddressCell.m */,
+				8F69CF7519EE0756001FCC59 /* myAddressCell.xib */,
+				8F69CF7B19EE0AAA001FCC59 /* YMSIndexLocationViewController.h */,
+				8F69CF7C19EE0AAA001FCC59 /* YMSIndexLocationViewController.m */,
 			);
-			name = MapNew;
+			name = mapNew;
 			sourceTree = "<group>";
 		};
 		A00742A019C25F4100F74680 /* sampleResource */ = {
@@ -1945,7 +1950,7 @@
 				092DF51119A1A7F500C91013 /* wg2.png in Resources */,
 				092DF4D919A1A7F500C91013 /* jiand.png in Resources */,
 				092DF50119A1A7F500C91013 /* timeline.9.png in Resources */,
-				8F9B33CD19EBAA27000ABE16 /* myAddressCell.xib in Resources */,
+				8F69CF7919EE0756001FCC59 /* myAddressCell.xib in Resources */,
 				092DF4C119A1A7F500C91013 /* flag_pay.png in Resources */,
 				A01DC11319DBF1C7001A948F /* whiteArrow.png in Resources */,
 				092DF52119A1A7F500C91013 /* ydju.png in Resources */,
@@ -2169,7 +2174,6 @@
 				A08C755919E415C000C28D19 /* FMDatabase.m in Sources */,
 				A01DC12A19DC1780001A948F /* MKAnnotationView+WebCache.m in Sources */,
 				09E27C2119B1DF4C00A6D96D /* LLARingSpinnerView.m in Sources */,
-				8F9B33CC19EBAA27000ABE16 /* myAddressCell.m in Sources */,
 				096E103E19E6273900176546 /* YMSShareViewController.m in Sources */,
 				09B98BA319C17A140077D629 /* GeocodeAnnotation.m in Sources */,
 				095A13C719B058C8002A541A /* ASIDataCompressor.m in Sources */,
@@ -2203,6 +2207,7 @@
 				158E692319E78CA200E69E1B /* CommentViewController.m in Sources */,
 				A3D1688219B5A4BB0060EA2F /* BookMealTableViewController.m in Sources */,
 				A3B7FF4019C6D25A008EFAC9 /* SendRootTableViewCell.m in Sources */,
+				8F69CF7819EE0756001FCC59 /* myAddressCell.m in Sources */,
 				095A139319B05867002A541A /* YMSAdRestaurant.m in Sources */,
 				156CDE4319D948D400D54DCC /* YMSPrincipalDetailViewController.m in Sources */,
 				158205B319DA56A300C97326 /* YMSMessageViewController.m in Sources */,
@@ -2221,11 +2226,13 @@
 				095A13D219B058C8002A541A /* ASIS3ObjectRequest.m in Sources */,
 				A08C755C19E415C000C28D19 /* FMDatabaseQueue.m in Sources */,
 				A3D1688919B5A4BB0060EA2F /* TakeOutTableViewController.m in Sources */,
+				1573C78619EBB326003534F7 /* MineBookTableViewCell.m in Sources */,
 				A081160519D7A6E800700C3F /* YMSalipayViewController.m in Sources */,
 				095A13CE19B058C8002A541A /* ASIWebPageRequest.m in Sources */,
 				09AF4D90199DAF060092EA17 /* YMSViewController.m in Sources */,
 				A08115FB19D7A6E800700C3F /* NSObject+SBJSON.m in Sources */,
 				A08115F919D7A6E800700C3F /* AlixPayOrder.m in Sources */,
+				8F69CF7D19EE0AAA001FCC59 /* YMSIndexLocationViewController.m in Sources */,
 				09B98BA619C17A140077D629 /* CommonUtility.m in Sources */,
 				156E31CC19E65BE4003965E2 /* FirmAddressTableViewCell.m in Sources */,
 				A3B7FF3D19C6D07C008EFAC9 /* SendMealDetailViewController.m in Sources */,
@@ -2268,7 +2275,6 @@
 				095A13CC19B058C8002A541A /* ASIInputStream.m in Sources */,
 				A3D6C25A19C406CC00E917D2 /* RestaurantBannerTableViewCell.m in Sources */,
 				095A13CD19B058C8002A541A /* ASINetworkQueue.m in Sources */,
-				8F9B33CE19EBAA27000ABE16 /* YMSIndexLocationViewController.m in Sources */,
 				A01DC10919DBF1C7001A948F /* EGORefreshTableHeaderView.m in Sources */,
 				A01DC13019DC1780001A948F /* UIButton+WebCache.m in Sources */,
 				A08C755A19E415C000C28D19 /* FMDatabaseAdditions.m in Sources */,

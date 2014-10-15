@@ -2,7 +2,7 @@
 //  YMSIndexLocationViewController.h
 //  YMSAPP
 //
-//  Created by 介扬 on 14-10-13.
+//  Created by 介扬 on 14-10-15.
 //  Copyright (c) 2014年 gaoxuzhao. All rights reserved.
 //
 
